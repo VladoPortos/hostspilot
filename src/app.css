@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+html {
+  height: 100vh;
+  overflow: hidden;
+}
+
+#svelte {
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Custom textarea styling */
+textarea {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+textarea::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 6px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7);
+  background-clip: padding-box;
+}
+
+textarea::selection {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+[data-theme="dark"] textarea {
+  scrollbar-color: rgba(156, 163, 175, 0.3) transparent;
+}
+
+[data-theme="dark"] textarea::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  background-clip: padding-box;
+}
+
+[data-theme="dark"] textarea::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+  background-clip: padding-box;
+}
+
+/* Hosts file highlighting */
+.hosts-highlight {
+  overflow: auto;
+  scrollbar-width: none;
+}
+
+.hosts-highlight::-webkit-scrollbar {
+  display: none;
+}

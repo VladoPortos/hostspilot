@@ -1,0 +1,65 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "HostsPilot",
+  "version": "1.0.0",
+  "identifier": "com.vladoportos.hostspilot",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "HostsPilot - Manage your hosts files",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600
+      }
+    ],
+    "security": {
+      "csp": null
+    },
+    "withGlobalTauri": false
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "publisher": "VladoPortos",
+    "copyright": "Copyright © 2025 VladoPortos",
+    "category": "DeveloperTool",
+    "shortDescription": "Manage your hosts files with ease",
+    "longDescription": "HostsPilot is a modern hosts file manager built with Rust, Tauri 2, and Svelte 5. Easily manage multiple host profiles, create backups, and switch between configurations.",
+    "icon": [
+      "icons/favicon-32x32.png",
+      "icons/favicon-96x96.png",
+      "icons/apple-icon-152x152.png",
+      "icons/android-icon-192x192.png",
+      "icons/ms-icon-310x310.png",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": "",
+      "webviewInstallMode": {
+        "type": "downloadBootstrapper"
+      },
+      "allowDowngrades": true,
+      "wix": {
+        "language": "en-US"
+      },
+      "nsis": {
+        "installerIcon": "icons/icon.ico",
+        "installMode": "currentUser",
+        "languages": ["en"],
+        "displayLanguageSelector": false,
+        "compression": "lzma"
+      }
+    },
+    "externalBin": [],
+    "resources": []
+  }
+}
