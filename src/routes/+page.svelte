@@ -53,6 +53,24 @@
       profileContent = systemHostsContent;
       selectedProfile = "live";
     }
+    
+    // Add keyboard shortcut for Ctrl+S
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        // Only save if we're in editor view and not on live profile
+        if (currentView === "editor" && selectedProfile !== "live") {
+          saveProfile();
+        }
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   });
 
   // Ensure editor updates when content changes
@@ -829,9 +847,9 @@
     </div>
     <div class="modal-action">
       <form method="dialog">
-        <button class="btn">Cancel</button>
+        <button class="btn btn-sm modal-cancel-btn">Cancel</button>
       </form>
-      <button class="btn btn-primary" onclick={createProfile}>Create</button>
+      <button class="btn btn-sm btn-primary modal-create-btn" onclick={createProfile}>Create</button>
     </div>
   </div>
   <form method="dialog" class="modal-backdrop">
@@ -857,8 +875,8 @@
         />
       </div>
       <div class="modal-action">
-        <button class="btn" onclick={() => showCloneModal = false}>Cancel</button>
-        <button class="btn btn-primary" onclick={cloneProfile}>Clone</button>
+        <button class="btn btn-sm modal-cancel-btn" onclick={() => showCloneModal = false}>Cancel</button>
+        <button class="btn btn-sm btn-primary modal-create-btn" onclick={cloneProfile}>Clone</button>
       </div>
     </div>
     <div class="modal-backdrop" onclick={() => showCloneModal = false} onkeydown={(e) => e.key === 'Enter' && (showCloneModal = false)} role="button" tabindex="0" aria-label="Close modal"></div>
@@ -883,8 +901,8 @@
         />
       </div>
       <div class="modal-action">
-        <button class="btn" onclick={() => showRenameModal = false}>Cancel</button>
-        <button class="btn btn-primary" onclick={renameProfile}>Rename</button>
+        <button class="btn btn-sm modal-cancel-btn" onclick={() => showRenameModal = false}>Cancel</button>
+        <button class="btn btn-sm btn-primary modal-create-btn" onclick={renameProfile}>Rename</button>
       </div>
     </div>
     <div class="modal-backdrop" onclick={() => showRenameModal = false} onkeydown={(e) => e.key === 'Enter' && (showRenameModal = false)} role="button" tabindex="0" aria-label="Close modal"></div>
@@ -924,7 +942,7 @@
         </p>
       </div>
       <div class="modal-action">
-        <button class="btn btn-primary" onclick={() => showAboutModal = false}>Close</button>
+        <button class="btn btn-sm btn-primary modal-create-btn" onclick={() => showAboutModal = false}>Close</button>
       </div>
     </div>
     <div class="modal-backdrop" onclick={() => showAboutModal = false} onkeydown={(e) => e.key === 'Enter' && (showAboutModal = false)} role="button" tabindex="0" aria-label="Close modal"></div>
@@ -1057,5 +1075,32 @@
     background-color: rgba(34, 197, 94, 0.3) !important;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Modal buttons - match New Blank Profile button style */
+  .modal-cancel-btn {
+    border: 1px solid rgba(0, 0, 0, 0.3) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .modal-create-btn {
+    border: 1px solid rgba(0, 0, 0, 0.3) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  /* Modal input boxes - slightly different background with thin border */
+  .modal-box .input {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(0, 0, 0, 0.3) !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .modal-box .input:focus {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: oklch(var(--p)) !important;
+    outline: none !important;
   }
 </style>
